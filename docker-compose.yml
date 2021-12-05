@@ -12,6 +12,7 @@ services:
       - ./nginx/log:/var/log/nginx
       - ./nginx/certbot/conf:/etc/letsencrypt
       - ./nginx/certbot/www:/var/www/certbot
+      - /var/run/docker.sock:/tmp/docker.sock:ro
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   certbot:
     image: certbot/certbot
